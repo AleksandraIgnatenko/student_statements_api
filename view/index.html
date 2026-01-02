@@ -34,6 +34,19 @@
             <button id="load-report">Показать отчёт</button>
             <div id="report-output"></div>
         </section>
+
+        <section>
+            <h2>Добавить/обновить оценку</h2>
+            <form id="grade-form">
+                <input type="number" id="grade-student-id" placeholder="ID студента" min="1" required>
+                <select id="grade-subject" required>
+                    <option value="">Выберите предмет</option>
+                </select>
+                <input type="number" id="grade-numeric" placeholder="Оценка (60-100)" min="60" max="100" required>
+                <input type="text" id="grade-ects" placeholder="ECTS (A, B, C, D, E)" maxlength="1" required>
+                <button type="submit">Сохранить оценку</button>
+            </form>
+        </section>
     </div>
 
     <script src="script.js"></script>

@@ -60,6 +60,11 @@ async def get_grades_by_student(student_id: int, db: Session = Depends(database.
         ]
     }
 
+@app.get("/grades/subjects", response_model=List[str])
+def get_subjects(db: Session = Depends(database.get_db)):
+    subjects = db.query(models.Subject.subject_name).all()
+    return [s[0] for s in subjects]
+
 @app.post("/grades", response_model=schemas.GradeResponse)
 async def create_or_update_grade(grade: schemas.GradeCreate, db: Session = Depends(database.get_db)):
     await verify_student_exists(grade.student_id)
