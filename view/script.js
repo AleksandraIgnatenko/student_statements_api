@@ -1,7 +1,5 @@
-// Единая точка входа — API Gateway
 const API_BASE = 'http://127.0.0.1:8004';
 
-// Загрузка списка групп при старте
 async function loadGroups() {
     try {
         const response = await fetch(`${API_BASE}/groups`);
@@ -23,7 +21,6 @@ async function loadGroups() {
     }
 }
 
-// Добавление студента
 document.getElementById('student-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const data = {
@@ -33,7 +30,6 @@ document.getElementById('student-form').addEventListener('submit', async (e) => 
         group_name: document.getElementById('group_name').value
     };
 
-    // Валидация на фронте
     if (!data.surname || !data.first_name || !data.second_name || !data.group_name) {
         alert('Пожалуйста, заполните все поля.');
         return;
@@ -60,7 +56,6 @@ document.getElementById('student-form').addEventListener('submit', async (e) => 
     }
 });
 
-// Загрузка студентов
 async function loadStudents() {
     const list = document.getElementById('students-list');
     list.innerHTML = '<li>Загрузка...</li>';
@@ -85,10 +80,8 @@ async function loadStudents() {
     }
 }
 
-// Обработчик кнопки "Загрузить студентов"
 document.getElementById('load-students').addEventListener('click', loadStudents);
 
-// Загрузка отчёта по студенту
 document.getElementById('load-report').addEventListener('click', async () => {
     const studentIdInput = document.getElementById('report-student-id');
     const studentId = studentIdInput.value.trim();
@@ -135,7 +128,6 @@ document.getElementById('load-report').addEventListener('click', async () => {
     }
 });
 
-// Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
     loadGroups();
 });
